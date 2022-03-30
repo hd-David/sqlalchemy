@@ -1,5 +1,5 @@
 from app import Nation, County, dbconnect
-from sqlalchemy import create_engine, insert, update, delete, select
+from sqlalchemy import create_engine, update, delete, select
 import pprint
 
 pp = pprint.PrettyPrinter(indent=4)
