@@ -9,6 +9,8 @@ class Nation(Base):
     __tablename__ = "nation"
     id = Column(Integer, primary_key = True)
     name = Column(String(64))
+    capital_city = Column(String(64))
+    population = Column(Integer())
     
 
 class County(Base):
