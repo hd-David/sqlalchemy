@@ -1,60 +1,21 @@
-from app import Nation, County, dbconnect
+from app import Nation, County, Town
+from sqlalchemy.orm.exc import NoResultFound
 
-session = dbconnect()
-# populating the table with some data
-Malawi = Nation(
-    name = "Malawi",
-    capital_city = "lilongwe",
-    population = 87432529
+def addGetNation(session, nation_name_input):
+    # Try and get the Nation from the database. If error (Except) add to the database.
+    try:
+        nation = session.query(Nation).filter(Nation.name == nation_name_input).one()
+    except NoResultFound:
+        nation = Nation()
+        nation.name = nation_name_input
+    return nation
 
-    )
-Angola = Nation(
-    name="Angola",
-    capital_city = "Luanda",
-    population = 98497895
-    )
-
-Ghana =  Nation(
-    name="Ghana",
-    capital_city = "Accra",
-    population = 894366835
-    )
-
-Egypt =  Nation(
-    name="Egypt",
-    capital_city = "Cairo",
-    population = 56673457
-    )
-
-Mali =  Nation(
-    name="Mali",
-    capital_city = "Bamako",
-    population = 83989297
-    )
-
-Zimbabwe =  Nation(
-    name = "Zimbabwe",
-    capital_city = "Harare",
-    population = 76538963
-    )
-
-Namibia  =  Nation(
-    name = "Namibia",
-    capital_city = "Windhoek",
-    population = 78687535
-    )
-
-Congo =   Nation(
-    name = "Congo",
-    capital_city = "Kinshasa",
-    population = 78439084
-    )
-
-Senegal =  Nation(
-    name="Senegal",
-    capital_city = "Dakar",
-    population = 78696843
-    )
-    
-session.add_all([Congo, Senegal, Namibia, Zimbabwe, Mali, Egypt,Ghana, Angola, Malawi]) # adding data to the session
-session.commit()
+def addGetCounty(session, county_name_input, nation_name_input):
+    # Try and get the County from the database. If error (Except) add to the database.
+    try:
+        county = session.query(County).filter(County.name == county_name_input).one()
+    except NoResultFound:
+        county = County()
+        county.nation = addGetNation(session, nation_name_input)
+        county.name = county_name_input
+    return county
