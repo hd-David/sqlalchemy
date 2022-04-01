@@ -26,13 +26,14 @@ We then do commit our transaction.
 
 SQL documentation for CRUD
 The SQL command below, creates a table in the database.
+```
 CREATE TABLE nation (
     id int,
     name varchar(255),
     capital_city varchar(255),
     population int,
 );
-
+```
 Below ia the querry the user used to view data in the database.
 One thing to keep in mind SQL is not case sensitive, you can use lowercase or uppercase it still works.
 SELECT * FROM nation;
