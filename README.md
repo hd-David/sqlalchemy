@@ -1,4 +1,5 @@
-Sqlachemy
+# Sqlalchemy
+
 In app.py, which is our model we are creating class instances to define objects which creates tables in the database.
 We have two objects in our model, one is defining nations and the other one is county.
 Then we define our connection to the database using session.
@@ -36,13 +37,18 @@ CREATE TABLE nation (
 ```
 Below ia the querry the user used to view data in the database.
 One thing to keep in mind SQL is not case sensitive, you can use lowercase or uppercase it still works.
+```
 SELECT * FROM nation;
+```
 The command above is the view querry where we check all data in our database.
 
 To delete data or row from our database we use the following querry.
+```
 DELETE FROM nation WHERE nation.name='Malawi';
-
+```
 To change data in one row we use update which is the SQL command.
+```
 UPDATE nation
 SET nation.name='Tanzania'
 WHERE nation.name='Morroco';
+```
